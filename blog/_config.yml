@@ -98,6 +98,6 @@ theme: 3-hexo
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: 'git'
+  type: git
   repo: https://github.com/aad61404/aad61404-blog.git
   message: 'try'
