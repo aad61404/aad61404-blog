@@ -5,6 +5,7 @@
 https://kennyliblog.nctu.me/2019/06/19/Hexo-problem-Gitsubmodules/#%E5%95%8F%E9%A1%8C%E6%8F%8F%E8%BF%B0
 
 
+https://aad61404.github.io/aad61404-blog/
 
 # 舊版筆記
 --------------------------------------------------------
