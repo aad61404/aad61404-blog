@@ -93,11 +93,12 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: 3-hexo
+theme: hexo-theme-matery
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
+
 deploy:
   type: git
   repo: https://github.com/aad61404/aad61404-blog.git
-  message: 'try'
+  branch: gh-pages
