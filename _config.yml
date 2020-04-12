@@ -101,4 +101,4 @@ theme: hexo-theme-matery
 deploy:
   type: git
   repo: https://github.com/aad61404/aad61404-blog.git
-  branch: gh-pages
+
