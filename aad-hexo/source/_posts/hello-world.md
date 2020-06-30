@@ -1,38 +1,14 @@
 ---
-title: Hello World
+title: Hexo 筆記
 ---
-Welcome to [Hexo](https://hexo.io/)! This is your very first post. Check [documentation](https://hexo.io/docs/) for more info. If you get any problems when using Hexo, you can find the answer in [troubleshooting](https://hexo.io/docs/troubleshooting.html) or you can ask me on [GitHub](https://github.com/hexojs/hexo/issues).
+圖片除了可以放在統一的images文件夾中，還可以放在文章自己的目錄中。文章的目錄可以通過配置_config.yml來生成。
 
-## Quick Start
+## 插入圖片
+_config.yml
+post_asset_folder: true
 
-### Create a new post
-
-``` bash
-$ hexo new "My New Post"
-```
-
-More info: [Writing](https://hexo.io/docs/writing.html)
-
-### Run server
-
-``` bash
-$ hexo server
-```
-
-More info: [Server](https://hexo.io/docs/server.html)
-
-### Generate static files
-
-``` bash
-$ hexo generate
-```
-
-More info: [Generating](https://hexo.io/docs/generating.html)
-
-### Deploy to remote sites
-
-``` bash
-$ hexo deploy
-```
-
-More info: [Deployment](https://hexo.io/docs/one-command-deployment.html)
+## 開啟摺疊
+theme _config.yml
+auto_excerpt:
+  enable: true
+  length: 750
