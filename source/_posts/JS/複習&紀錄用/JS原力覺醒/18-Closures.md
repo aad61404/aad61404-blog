@@ -1,0 +1,13 @@
+---
+title: 鐵人賽精選文章(JS原力覺醒)-08-Closures
+date: 2020-06-24 17:28
+categories: 
+- JS原力覺醒
+tags:
+- 鐵人賽精選文章
+- 08-Closures
+- JS原力覺醒
+---
+作者附圖片解釋比較清楚
+來源 :
+https://ithelp.ithome.com.tw/articles/10219603
