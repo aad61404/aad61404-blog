@@ -5,7 +5,6 @@ categories:
 - Leecode
 tags:
 - Leecode
-- Tips
 - unsloved
 ---
 

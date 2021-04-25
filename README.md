@@ -12,6 +12,7 @@ cd .\aad-hexo\
 npm install  
 code .
 git clone https://github.com/iissnan/hexo-theme-next themes/next
+git clone https://github.com/blinkfox/hexo-theme-matery themes/hexo-theme-matery
 hexo s
 npm install hexo-deployer-git --save
 hexo server
