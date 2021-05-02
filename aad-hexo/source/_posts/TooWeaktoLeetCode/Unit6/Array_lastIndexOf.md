@@ -1,6 +1,6 @@
 ---
-title: Unit6-Array_lastIndexOf
-date: 2021-04-25 16:59:00
+title: Unit6-Array_join
+date: 2021-05-01 23:20:00
 categories: 
 - TooWeaktoLeetCode
 tags:
