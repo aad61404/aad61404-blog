@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    #results li.pass {
+        color: green;
+    }
+
+    #results li.fail {
+        color: red;
+    }
+</style>
+
+<body>
+    <!--  -->
+    <!-- 含式參數包含再含式的閉包之內 -->
+    <!-- 含外部範圍裡面的所有變數，即使是再尚未宣告之後才定義，也通通包含 -->
+    <!-- 在同一個範圍裡，尚未定義的變數不能被往前參照 -->
+
+    <!-- 閉包常見的用途之一是封裝某些資訊，成為類似於「私有變數」的樣子，換句話說，就是限制此種變數的範圍。以JavaScript 寫出來的物件導向程式，無法使用傳統的私有變數:物件的屬性絕世獨立於外界；然後若是運用閉包的概念，則能達成可接受的近似效果，如底下程式列表所示 -->
+    <ul id="results"></ul>
+    <script>
+        function assert(value, desc) {
+            var li = document.createElement("li");
+            li.className = value ? "pass" : "fail";
+            li.appendChild(document.createTextNode(desc));
+            document.getElementById("results").appendChild(li);
+        }
+
+        function Ninja() {
+            var feints = 0;
+
+            this.getFeints = function(){
+                return feints;
+            }
+            this.feint = function(){
+                feints++
+            }
+        };
+
+        var ninja = new Ninja();
+
+        ninja.feint();
+
+        assert(ninja.getFeints() == 1,'We\'re able to access the internal feint count.');
+        assert(ninja.feints , 'And the private data is inaccessible to us .');
+    </script>
+</body>
+
+</html>

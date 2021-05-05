@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    #results li.pass {
+        color: green;
+    }
+
+    #results li.fail {
+        color: red;
+    }
+</style>
+
+<body>
+
+    <ul id="results"></ul>
+    <script src="uncompress_JQuery.js"></script>
+    <img src="995.jpg">
+    <script>
+        function assert(value, desc) {
+            var li = document.createElement("li");
+            li.className = value ? "pass" : "fail";
+            li.appendChild(document.createTextNode(desc));
+            document.getElementById("results").appendChild(li);
+        }
+        // (function(what){ alert(what); })('Hi there!');
+        $ = function(){ alert('not jQuery!'); };
+  
+        (function($){
+            $('img').on('click',function(event){
+            $(event.target).addClass('clickedOn');
+            })
+        })(jQuery);
+        $();
+    </script>
+
+<body>
+   
+    <script type="text/javascript">
+
+    </script>
+  </body>
+</body>
+
+</html>

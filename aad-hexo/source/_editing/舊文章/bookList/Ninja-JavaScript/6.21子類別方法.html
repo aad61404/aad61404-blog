@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    #results li.pass {
+        color: green;
+    }
+
+    #results li.fail {
+        color: red;
+    }
+</style>
+
+<body>
+
+    <ul id="results"></ul>
+
+    <!-- <script src="uncompress_JQuery.js"></script> -->
+    <script type="text/javascript">
+
+    </script>
+    <script>
+        function assert(value, desc) {
+            var li = document.createElement("li");
+            li.className = value ? "pass" : "fail";
+            li.appendChild(document.createTextNode(desc));
+            document.getElementById("results").appendChild(li);
+        }
+
+        (function () {
+            var initializing = false,
+                superPattern =
+                /xyz/.test(function () {
+                    xyz;
+                }) ? /\b_super\b/ : /.*/; //正規式
+
+            Object.subClass = function (properties) {  // 新增subClass 方法到Oject
+                var _super = this.prototype;
+                initializing = true; // 實體化 父類別
+                var proto = new this(); // 實體化 父類別
+                initializing = false; // 實體化 父類別
+
+                for (var name in properties) { // 複製屬性放進原型
+                    proto[name] = typeof properties[name] == "function" &&
+                        typeof _super[name] == "function" &&
+                        superPattern.test(properties[name]) ?
+                        (function (name, fn) {
+                            return function () {
+                                var tmp = this._super;
+                                this._super = _super[name];
+                                var ret = fn.apply(this, arguments);
+                                this._super = tmp;
+                                return ret;
+                            };
+                        })(name, properties[name]) :
+                        properties[name];
+                }
+
+                function Class() {
+                    // All construction is actually done in the init method
+                    if (!initializing && this.init)
+                        this.init.apply(this, arguments);
+                }
+                Class.prototype = proto;
+                Class.constructor = Class;
+                Class.subClass = arguments.callee;
+                return Class;
+            };
+        })();
+    </script>
+
+
+</body>
+
+</html>

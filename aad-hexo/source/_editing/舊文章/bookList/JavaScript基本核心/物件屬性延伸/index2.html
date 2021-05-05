@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    function HomeAppliance (price) {
+        this.kind = "家具";
+        this.price = price || '價格';
+    }
+
+    HomeAppliance.prototype.carry = function () {
+        console.log(this.name + '很重');
+    }
+
+    function Refrigerator(name , color , size) {
+        HomeAppliance.call(this, '貴桑桑'); // version 2 
+        this.name = name;
+        this.color = color;
+        this.size = size;
+        this.open = function () {
+            console.log('open it !');
+        }
+    }
+
+    Refrigerator.prototype.freeze =  function() {
+        console.log('冰凍它');
+    }
+    // Refrigerator.prototype = new HomeAppliance(100);  // version 2
+    Refrigerator.prototype = Object.create(HomeAppliance.prototype);
+    Refrigerator.prototype.constructor = Refrigerator;
+    
+    var daikin = new Refrigerator('daikin', 'red', 'big');
+    function Television(name, color , size) {
+        HomeAppliance.call(this, '哎呀真便宜')
+        this.name =name ;
+        this.color = color;
+        this.size = size;
+        this.close = function () {
+            console.log('關掉它');
+        }
+    }
+
+    Television.prototype.change = function () {
+        console.log('轉台');
+    }
+    Television.prototype = Object.create(HomeAppliance.prototype);
+    Television.prototype.constructor = Television;
+
+    var Etoday = new Television('Etoday', 'black', 'middle');
+    </script>
+</body>
+</html>

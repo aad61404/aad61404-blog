@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    #results li.pass {
+        color: green;
+    }
+
+    #results li.fail {
+        color: red;
+    }
+</style>
+
+<body>
+    <!--  -->
+    <ul id="results"></ul>
+    <script>
+        // 匿名含式寫法
+        /*
+        function assert(value, desc) {
+            var li = document.createElement("li");
+            li.className = value ? "pass" : "fail";
+            li.appendChild(document.createTextNode(desc));
+            document.getElementById("results").appendChild(li);
+        }
+
+        var ninja = {
+            chirp: function(n) {
+                // 錯誤範例
+                // return n > 1 ? ninja.chirp(n-1) + '-chirp': 'chirp';
+                return n > 1 ? this.chirp(n -1) + '-chirp': 'chirp';
+            }
+        }
+        var samuri = { chirp : ninja.chirp};
+        ninja = {};
+        try {
+            assert(samuri.chirp(3) == 'chirp-chirp-chirp','Is this going to work?')
+        }
+        catch(e) {
+            assert(false , 'Uh, this isn\'t good!')
+        }
+        */
+
+        // 行內含式寫法
+        function assert(value, desc) {
+            var li = document.createElement("li");
+            li.className = value ? "pass" : "fail";
+            li.appendChild(document.createTextNode(desc));
+            document.getElementById("results").appendChild(li);
+        }
+
+        var ninja = {
+            chirp: function singal(n) {
+                return n > 1 ? singal(n - 1) + '-chirp' : 'chirp';
+            },
+            shiushiu: function sound(n) {
+                return n < 1 ?  sound(n + 1) + '-shiushiu' : 'shiushiu';
+            }
+        }
+
+        assert(ninja.chirp(3) == 'chirp-chirp-chirp',
+            'work as we expected to')
+
+        var samurai = {
+            chirp: ninja.chirp,
+            shiushiu: ninja.shiushiu
+        }
+
+        ninja = {};
+        assert(samurai.chirp(3) == 'chirp-chirp-chirp',
+            'The method correctly calls itself.');
+            assert(samurai.shiushiu(-3));
+            console.log(samurai.shiushiu(-1))
+    </script>
+</body>
+
+</html>

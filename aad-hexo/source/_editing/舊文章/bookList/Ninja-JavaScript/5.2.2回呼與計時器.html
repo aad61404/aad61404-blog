@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    #results li.pass {
+        color: green;
+    }
+
+    #results li.fail {
+        color: red;
+    }
+</style>
+
+<body>
+    <div id="testSubject"></div>
+    <button type="button" id="testButton">Go!</button>
+    <ul id="results"></ul>
+    <script src="uncompress_JQuery.js"></script>
+
+    <script>
+        function assert(value, desc) {
+            var li = document.createElement("li");
+            li.className = value ? "pass" : "fail";
+            li.appendChild(document.createTextNode(desc));
+            document.getElementById("results").appendChild(li);
+        }
+
+        $('#testButton').click(function () {
+
+            var elem$ = $("#testSubject");
+
+            elem$.html("Loading...");
+
+            $.ajax({
+                url: "test.html",
+                success: function (html) {
+
+                    assert(elem$,
+                        "We can see elem$, via the closure for this callback.");
+                    elem$.html(html);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

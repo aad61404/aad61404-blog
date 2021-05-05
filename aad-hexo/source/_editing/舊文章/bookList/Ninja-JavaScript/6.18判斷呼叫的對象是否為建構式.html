@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    #results li.pass {
+        color: green;
+    }
+
+    #results li.fail {
+        color: red;
+    }
+</style>
+
+<body>
+
+    <ul id="results"></ul>
+
+    <!-- <script src="uncompress_JQuery.js"></script> -->
+    <script type="text/javascript">
+
+    </script>
+    <script>
+        function assert(value, desc) {
+            var li = document.createElement("li");
+            li.className = value ? "pass" : "fail";
+            li.appendChild(document.createTextNode(desc));
+            document.getElementById("results").appendChild(li);
+        }
+
+        function Test() {
+            return this instanceof arguments.callee;
+        }
+        // arguments.callee 可取得去前執行中的函式(第四章)
+        assert(!Test(), 'We didn\'t instantiate, so it returns false.');
+        assert(new Test(), 'We did instantiate, returning true.');
+
+    </script>
+
+
+</body>
+
+</html>

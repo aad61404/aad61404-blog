@@ -1,0 +1,44 @@
+<html>
+
+<head>
+    <title>Test Suite</title>
+
+    <style>
+        #result li.pass {
+            color: green;
+        }
+
+        #result li.fail {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="results"></ul>
+
+    <script>
+        (function () {
+            // console.log('hello');
+            this.assert = function assert(value, desc) {
+                var li = document.createElement('li');
+                li.appendChild(document.createTextNode('yooyo'));
+                var res = document.querySelector('#results');
+                res.appendChild(document.createElement("li"));
+            }
+            this.assert();
+        })();
+
+        for (let index = 0; index < array.length; index++) {
+            const element = array[index];
+            
+        }
+
+        function callStrict( para1, para2) {
+            'use strict';
+            console.log(this, typeof this, para1 , para2)
+        }
+    </script>
+</body>
+
+</html>

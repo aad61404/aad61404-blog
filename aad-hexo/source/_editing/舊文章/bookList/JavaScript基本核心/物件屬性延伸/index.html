@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var wallet = {
+            total : 100,
+            set save(price) {
+                this.total = this.total + price /2 ;
+            },
+            get saveM() {
+                return this.total / 2;
+            }
+        }
+        // Getter 使用 取得特定值 (點擊算式的當下取值)
+        // saveM 會取到的是 運算300之後的值 125
+        console.log(wallet.saveM, wallet)
+        
+        // Setter 存值方法
+        wallet.save = 300;
+        console.log(wallet.saveM, wallet)
+
+
+        // part 2
+        Object.defineProperty(wallet, 'save', {
+            configurable : true,
+            enumerable : true,
+            set: function (price) {
+                this.total = this.total + price /2;
+            },
+            get: function () {
+                return this.total / 2;
+            }
+        })
+        
+        // part 3 常用範例 01
+        console.log(wallet);
+        console.log(Object.getOwnPropertyDescriptor(wallet, 'save'));
+
+        var a = [1,2,3];
+        Object.defineProperty(Array.prototype, 'latest', {
+            get: function () {
+                return this[this.length -1];
+            }
+        })
+
+        console.log(a.latest);
+        var b = [4,5,6];
+        console.log(b.latest);
+    </script>
+</body>
+</html>

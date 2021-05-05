@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    #results li.pass {
+        color: green;
+    }
+
+    #results li.fail {
+        color: red;
+    }
+</style>
+
+<body>
+
+    <ul id="results"></ul>
+
+    <!-- <script src="uncompress_JQuery.js"></script> -->
+    <script type="text/javascript">
+
+    </script>
+    <script>
+        function assert(value, desc) {
+            var li = document.createElement("li");
+            li.className = value ? "pass" : "fail";
+            li.appendChild(document.createTextNode(desc));
+            document.getElementById("results").appendChild(li);
+        }
+
+        function MyArray()
+        MyArray.prototype.length = 0;
+        // 然後不是繼承Array，我們已經知道那種作法無法相容於所有瀏覽器，所以運用立即函式從Array 挑出想要的方法放入新類別
+        // 所使用的apply 技巧(第四章) 我們把方法名放在陣列裡
+        (function() {
+            var methods = ['push', 'pop', 'shift', 'unshift', 'slice', 'splice', 'join'];
+
+            for(var i =0; i< methods.length; i++) (function (name){
+                MyArray.prototype[ name ] = function() {
+                    return Array.prototype[ name ].apply(this , arguments)
+                };
+            })(methods[i])
+        })();
+
+    </script>
+
+
+</body>
+
+</html>

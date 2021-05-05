@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    #results li.pass {
+        color: green;
+    }
+
+    #results li.fail {
+        color: red;
+    }
+</style>
+
+<body>
+
+    <ul id="results"></ul>
+    <!-- <script src="uncompress_JQuery.js"></script> -->
+    <script type="text/javascript">
+
+    </script>
+    <script>
+        function assert(value, desc) {
+            var li = document.createElement("li");
+            li.className = value ? "pass" : "fail";
+            li.appendChild(document.createTextNode(desc));
+            document.getElementById("results").appendChild(li);
+        }
+
+        function Person() {}
+        Person.prototype.dance = function () {};
+
+        function Ninja() {}
+
+        Ninja.prototype = {  // 從Person 原型複製dance 方法
+            dance: Person.prototype.dance
+        };
+
+        var ninja = new Ninja();
+        assert(ninja instanceof Ninja, "ninja receives functionality from the Ninja prototype");
+        assert(ninja instanceof Person, "... and the Person prototype"); 
+        assert(ninja instanceof Object, "... and the Object prototype");
+
+        // 就結果而言失敗了 ，這並不是繼承，僅僅是複製而已
+    </script>
+</body>
+
+</html>

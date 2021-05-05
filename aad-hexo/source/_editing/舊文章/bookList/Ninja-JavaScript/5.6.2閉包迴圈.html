@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  #results li.pass {
+    color: green;
+  }
+
+  #results li.fail {
+    color: red;
+  }
+</style>
+
+<body>
+  <!-- https://medium.com/schaoss-blog/%E4%BD%A0%E4%B8%80%E7%9B%B4%E5%9C%A8%E7%94%A8-%E4%BD%86%E5%BE%9E%E6%B2%92%E6%90%9E%E6%87%82%E7%9A%84%E9%96%89%E5%8C%85-e6b39b4a5ade -->
+  
+  <!-- https://ithelp.ithome.com.tw/articles/10220557 -->
+  <ul id="results"></ul>
+  <script src="uncompress_JQuery.js"></script>
+  <div>DIV 0</div>
+  <div>DIV 1</div>
+  <br>
+  <br>
+  <br>
+  <button class="div2">Btn 2</button>
+  <button class="div2">Btn 3</button>
+
+  <script type="text/javascript">
+    var divs = document.getElementsByTagName("div");
+    for (var i = 0; i < divs.length; i++) {
+      divs[i].addEventListener("click", function () {
+        alert("divs #" + i + " was clicked.");
+      }, false);
+    }
+    // 我們遇到使用閉包與迴圈時常碰到的問題，被抓住的變數i在函式綁定之後仍會被「更新」。
+    // 每個綁定函式處理者都會顯示 最後儲存i的值 
+    // 問題出在閉包特性，閉包會記得變數的參照，不是僅記得建立閉包當時的值而已。
+    // 在此應使用閉包與立即函式
+
+    var divs2 = document.getElementsByClassName("div2");
+    for (var i = 0; i < divs2.length; i++) {
+      console.log(i);
+      divs2[i].addEventListener('click', function () {
+        alert('div2 # ' + i + 'was clicked.');
+      }, false);
+    }
+
+    // 這個算式 會跑出什麼 ?
+    // 關鍵字 
+    for (var i = 1; i <= 5; i++) {
+      setTimeout(function () {
+        console.log(i)
+      }, 1000 * i)
+    }
+
+    for (var i = 1; i <= 5; i++) {
+      setTimeout(function (i) {
+        console.log(i)
+      }, 1000 * i, i)
+    }
+    // 或是透過 IIFE：
+    for (var i = 1; i <= 5; i++) {
+      (function (i) {
+        setTimeout(function () {
+          console.log(i)
+        }, 1000 * i)
+      })(i)
+    }
+    // 間隔一秒依序印出 1, 2, 3, 4, 5
+    //  ES6 後更是只要將
+    // var 換成
+    // let 就輕鬆解決啦：
+    for (let i = 1; i <= 5; i++) {
+      setTimeout(function () {
+        console.log(i)
+      }, 1000 * i)
+    }
+    // 間隔一秒依序印出 1, 2, 3, 4, 5
+    // 還有一種比較玄妙的用法， 透過catch建立新的 EC：
+    for (var i = 1; i <= 5; i++) {
+      try {
+        throw i
+      } catch (i) {
+        setTimeout(function () {
+          console.log(i)
+        }, 1000 * i)
+      }
+    }
+    // 間隔一秒依序印出 1, 2, 3, 4, 5
+    // 聽說在 ES6 之前， 有一些套件是透過這樣的方式建立 EC 的， 但現在可千萬別這樣用啊 XD
+  </script>
+</body>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    #results li.pass {
+        color: green;
+    }
+
+    #results li.fail {
+        color: red;
+    }
+</style>
+
+<body>
+
+    <ul id="results"></ul>
+    <script src="assert.js"></script>
+    <!-- <script src="uncompress_JQuery.js"></script> -->
+    <div id="box" style="position: absolute;">Hello!</div>
+
+    <script type="text/javascript">
+        (function() {
+          var queue = [], paused = false;
+      
+          this.test = function(fn) {
+            queue.push(fn);
+            runTest();
+          };
+      
+          this.pause = function() {
+            paused = true;
+          };
+      
+          this.resume = function() {
+            paused = false;
+            setTimeout(runTest, 1);
+          };
+      
+          function runTest() {
+            if (!paused && queue.length) {
+              queue.shift()();
+              if (!paused) resume();
+            }
+          }
+        })();
+      </script>
+
+</body>
+
+</html>

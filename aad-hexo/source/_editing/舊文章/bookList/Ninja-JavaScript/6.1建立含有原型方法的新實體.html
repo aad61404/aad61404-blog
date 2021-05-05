@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    #results li.pass {
+        color: green;
+    }
+
+    #results li.fail {
+        color: red;
+    }
+</style>
+
+<body>
+
+    <ul id="results"></ul>
+    <!-- <script src="uncompress_JQuery.js"></script> -->
+    <script type="text/javascript">
+
+    </script>
+    <script>
+        function assert(value, desc) {
+            var li = document.createElement("li");
+            li.className = value ? "pass" : "fail";
+            li.appendChild(document.createTextNode(desc));
+            document.getElementById("results").appendChild(li);
+        }
+
+        function Ninja() {}
+
+        Ninja.prototype.swingSword = function () {
+            return true;
+        }
+        var ninja1 = Ninja(); 
+        assert(ninja1 === undefined, 'No instance of Ninja created.'); 
+        // 此方法不能保有原型方法
+
+        // 當作建構式來呼叫該函式，不僅建立新物件，它還擁有從函式得到的方法
+        var ninja2 = new Ninja(); // 變數指向物件(constructor 屬性)
+        // constructor 屬性 -> 指向建構式函式 (prototype 屬性)  -> 指向原型物件
+        
+        assert(ninja2 && ninja2.swingSword && ninja2.swingSword(), 'Intance exists and method os callable.');
+
+
+        // 6.3 觀察原型修改後的行為
+    </script>
+</body>
+
+</html>

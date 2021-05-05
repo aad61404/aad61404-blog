@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <p>這裡有一段話</p>
+    <p></p>
+    <script>
+        // 讓JS 撰寫更為精簡更直覺 簡便
+        // 沒有 arguments 參數
+        // 箭頭函式沒有自己的 this
+        const nums = function () {
+            console.log(arguments);
+            
+        }
+        
+        nums(10, 50 ,100 , 50 ,5 , 1, 1, 500);
+
+        const nums2 = (...arg) => {
+            console.log(arg);
+        }
+        nums2(10, 50 ,100 , 50 ,5 , 1, 1, 500);
+
+        // part 2
+        // # This 綁定的差異 一般 function 
+        // call function
+        var myName = '全域';
+        var person = {
+            myName : '小明',
+            callName: function () {
+                console.log('1', this.myName); // 小明
+                setTimeout(function () {
+                    console.log('2', this.myName); // 全域
+                    console.log('3', this); // window
+                }, 10)
+            }
+        }
+
+        person.callName();
+
+        // part 3
+        // # This 綁定 沒有 this
+        // call arrow function
+        var myName = '全域';
+        var person = {
+            myName : '小明',
+            callName:  () =>  {
+                console.log('1', this.myName); // 全域
+                setTimeout(() => {
+                    console.log('2', this.myName); // 全域
+                    console.log('3', this); // window
+                }, 10)
+            }
+        }
+
+        person.callName();
+
+
+        // part4 
+        const ele = document.querySelector('p');
+        ele.addEventListener('click', function() {
+            console.log('--- function : ');
+            console.log(this);
+        })
+        // part4-2
+        const ele2 = document.querySelector('p');
+        ele2.addEventListener('click', () => {
+            console.log('--- arrow function');
+            console.log(this);
+        })
+
+        // part5
+        // 無法透過 call , apply , bind 重新給予 this 
+        // 無法當作建構式 函式
+        var family = {
+            myName : '小明家'
+        }
+
+        var fn = (para1 , para2) => {
+            console.log(this, para1, para2)
+        }
+
+        fn.call(family , '小明', '杰倫')  // 這裡 call一樣 會指向全域，因為 arrow function 沒有this
+
+        var Fn = function (a) {
+            this.name = a;
+        }
+
+        var ArrowFn = (a) => {
+            this.name = a;
+        }
+
+        console.log(Fn.prototype , ArrowFn.prototype);
+        // ArrowFn.prototype undefined 
+        const a = new Fn('a');
+        console.log(a);
+
+        const b  =new ArrowFn('b');
+        console.log(b);
+        // Arrow is not a constructor
+
+    </script>
+</body>
+</html>

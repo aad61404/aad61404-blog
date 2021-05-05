@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    #results li.pass {
+        color: green;
+    }
+
+    #results li.fail {
+        color: red;
+    }
+</style>
+
+<body>
+
+    <ul id="results"></ul>
+
+    <!-- <script src="uncompress_JQuery.js"></script> -->
+    <script type="text/javascript">
+
+    </script>
+    <script>
+        function assert(value, desc) {
+            var li = document.createElement("li");
+            li.className = value ? "pass" : "fail";
+            li.appendChild(document.createTextNode(desc));
+            document.getElementById("results").appendChild(li);
+        }
+
+        /*
+        6.2.4
+        我們已經知道函式具備雙重用途，可作為一般函式以及作為建構式。因此對於程式使用者來說，並不一定隨時隨地清楚哪個是哪個
+        讓我們來看認錯會發生什麼事 
+        */
+
+        function User(first, last) {
+            this.name = first + ' ' + last
+        }
+
+        var user = User ('Ichigo', 'Kurosaki');
+        assert(user, "User instantiated");
+
+        assert(user.name == 'Ichigo Kurosaki', 'User name corrctyly assigned');
+
+        // 第一項測試失敗， 物件根本沒有被實體化 導致第二項測試錯誤
+        //
+        // 函式User() 應該是要加上 new ，或者粗心漏看函式呼叫地方 沒加上new 運算子
+        // 缺少new 運算子會導致函式以一般函式身分進行呼叫，而不是建構身分，於是不會建立新物件 (user 會是undefined)
+    </script>
+
+
+</body>
+
+</html>

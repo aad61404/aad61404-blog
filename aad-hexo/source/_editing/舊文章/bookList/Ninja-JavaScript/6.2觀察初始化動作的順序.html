@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    #results li.pass {
+        color: green;
+    }
+
+    #results li.fail {
+        color: red;
+    }
+</style>
+
+<body>
+
+    <ul id="results"></ul>
+    <!-- <script src="uncompress_JQuery.js"></script> -->
+    <script type="text/javascript">
+
+    </script>
+    <script>
+        function assert(value, desc) {
+            var li = document.createElement("li");
+            li.className = value ? "pass" : "fail";
+            li.appendChild(document.createTextNode(desc));
+            document.getElementById("results").appendChild(li);
+        }
+
+        function Ninja() {
+            this.swung = false;
+            this.swingSword = function () { // 實體方法
+                return !this.swung;
+            };
+        }
+
+
+        Ninja.prototype.swingSword = function () { // 原型方法
+            return this.swung;
+        };
+        var ninja = new Ninja();
+
+        assert(ninja.swingSword(), "Called the instance method, not the prototype method.");
+        // 綠色 ， 跑的是實體方法
+        // 1. 存取物件屬性參照，先檢查物件本身是否擁有該屬性，若有就取得其值，如果沒有 ...
+        // 2. 找出物件原型，檢查有無該屬性，若有就取得其值，如果沒有的話
+        // 3. 值是undefined 
+        // 6.1.4
+        /*
+        function Ninja() {
+            this.swung = true;
+            this.swingSword = function () { // 實體方法
+                return !this.swung;
+            };
+        }
+        var ninja = new Ninja();
+
+        Ninja.prototype.swingSword = function () { // 原型方法
+            return this.swung;
+        };
+
+        assert(ninja.swingSword(),"Called the instance method, not the prototype method.");
+
+        */
+        // 讓實體方法與原型方法獲得同樣名稱
+        // 猜哪個方法會勝出
+        // 結果顯示 即使原型方法在實體方法之後才加入，實體方法也會有較高的優先層級
+        // 只有當物件本身屬性查詢失敗時，才會到原型裡去尋找
+
+
+        
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    #results li.pass {
+        color: green;
+    }
+
+    #results li.fail {
+        color: red;
+    }
+</style>
+
+<body>
+
+    <ul id="results"></ul>
+    <!-- <script src="uncompress_JQuery.js"></script> -->
+    <script type="text/javascript">
+
+    </script>
+    <script>
+        function assert(value, desc) {
+            var li = document.createElement("li");
+            li.className = value ? "pass" : "fail";
+            li.appendChild(document.createTextNode(desc));
+            document.getElementById("results").appendChild(li);
+        }
+
+        function Ninja() {}
+        var ninja = new Ninja();
+        var ninja2 = new ninja.constructor();
+        assert(ninja2 instanceof Ninja, "It's a Ninja!");
+        assert(ninja !== ninja2, "But not the same Ninja!");
+        // 測試證明第二個Ninja 物件是獨立實體，並非指向原先的實體
+        // 有趣的是無法存取原先的函式，也能透過constructor屬性拿到參照
+
+        // 不要修改constructor 物件屬性
+    </script>
+</body>
+
+</html>

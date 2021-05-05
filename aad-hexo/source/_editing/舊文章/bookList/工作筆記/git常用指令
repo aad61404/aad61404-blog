@@ -1,0 +1,51 @@
+git log
+git reset (params)^ 
+
+選取 當前的git log  commit 碼
+加上^
+
+返回commit
+
+https://gitbook.tw/chapters/using-git/reset-commit.html
+
+
+git log
+git rebase - i 42604b0cb954bf9 
+
+範圍制
+選到 first commit 
+把 a~c 合併 到 d
+把 d  放到檔案最上方 其餘 改成 fixed
+其他功能 請閱讀文章
+https://gitbook.tw/chapters/rewrite-history/merge-multiple-commits-to-one-commit.html
+
+
+例如
+
+commit 13fd250a2febc113965cb33b7b575e408d38b115 (HEAD -> master)
+Author: aad61404 <asd61404@gmail.com>
+Date:   Tue Nov 19 15:46:53 2019 +0800
+
+    add d.txt cats 2
+
+commit 9dc39b1c55bce6bfa6db4bb50c24ed71d1a29295
+Author: aad61404 <asd61404@gmail.com>
+Date:   Tue Nov 19 15:46:24 2019 +0800
+
+    add c.txt dogs 1
+
+commit 697d525d9ab97490d979695b8688dadfbecea936
+Author: aad61404 <asd61404@gmail.com>
+Date:   Tue Nov 19 15:45:46 2019 +0800
+
+    add b.txt cat
+
+commit 40430494bb141528030882b003c2e75cf981ea78
+Author: aad61404 <asd61404@gmail.com>
+Date:   Tue Nov 19 15:45:29 2019 +0800
+
+    add a.txt dog
+
+commit 42604b0cb954bf960664711a9ddfa31bd4224882 (origin/master, origin/HEAD)
+Author: JasonCheng3 <49392463+JasonCheng3@users.noreply.github.com>
+Date:   Tue Nov 19 15:43:16 2019 +0800

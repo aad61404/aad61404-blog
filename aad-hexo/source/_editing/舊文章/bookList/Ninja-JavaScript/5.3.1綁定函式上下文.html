@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    #results li.pass {
+        color: green;
+    }
+
+    #results li.fail {
+        color: red;
+    }
+</style>
+
+<body>
+    <ul id="results"></ul>
+    <button id="test">Click Me!</button>
+    <button id="test2">test 2 Click Me!</button>
+    <script type="text/javascript">
+
+        function assert(value, desc) {
+            var li = document.createElement("li");
+            li.className = value ? "pass" : "fail";
+            li.appendChild(document.createTextNode(desc));
+            document.getElementById("results").appendChild(li);
+        }
+        var button = {
+            clicked: false,
+            click: function () {
+
+                this.clicked = true;
+                assert(button.clicked, "The button has been clicked");
+            }
+        };
+        var elem = document.getElementById("test");
+        elem.addEventListener("click", button.click, false);
+        // https://blog.csdn.net/qq_27626333/article/details/78463565
+        // 瀏覽器事件處理系統把上下文設為事件的目標元素  
+        // 需使用bind 綁定 button 上下文物件，而不是元素
+        // bind  作用建立並回傳薪的匿名方法，它會使用apply()呼叫原先的函式
+        function bind(context,name) {
+            return function() {
+                console.log(context);
+                console.log(name);
+                console.log(context[name]);
+                // console.log(context[name].apply(context, arguments));
+                return context[name].apply(context, arguments);
+            }
+        }
+        var button2 = {
+            clicked : false,
+            click: function() {
+                this.clicked = true;
+                assert(button2.clicked, 'The button has been clicked');
+                console.log(this);
+            }
+        }
+        var elem2 = document.getElementById('test2');
+        elem2.addEventListener('click', bind(button2, 'click'),false);
+    </script>
+
+</body>
+
+</html>

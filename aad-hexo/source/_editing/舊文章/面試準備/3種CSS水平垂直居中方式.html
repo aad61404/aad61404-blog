@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- https://kknews.cc/code/zy2xzjg.html -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    /* 公共代碼 */
+    .wp {
+        border: 1px solid red;
+        width: 300px;
+        height: 300px;
+    }
+
+    .box {
+        background: green;
+    }
+
+    .box.size {
+        width: 100px;
+        height: 100px;
+    }
+
+    /* 定位代碼 */
+    /* 第一種 */
+    /* .wp {
+        position: relative;
+    }
+
+    .box {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -50px;
+        margin-top: -50px;
+    } */
+    /* 第二種 */
+    /* .wp {
+        position: relative;
+    }
+
+    .box {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+    } */
+    /* 第三種 */
+    /* .wp {
+        position: relative;
+    }
+
+    .box {
+        position: absolute;
+        ;
+        top: calc(50% - 50px);
+        left: calc(50% - 50px);
+    } */
+    /* 第四種 */
+    /* .wp {
+        position: relative;
+    }
+
+    .box {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    } */
+
+    /* @lineheight@ */
+    .wp {
+        line-height: 300px;
+        text-align: center;
+        font-size: 0px;
+    }
+
+    .box {
+        font-size: 16px;
+        display: inline-block;
+        vertical-align: middle;
+        line-height: initial;
+        text-align: left;
+        /* 修正文字 */
+    }
+</style>
+
+<body>
+    <div class="wp">
+        <div class="box size">123123</div>
+    </div>
+
+
+    <style>
+        /* 定位代碼 */
+        .wp {
+            writing-mode: vertical-lr;
+            text-align: center;
+        }
+
+        .wp-inner {
+            writing-mode: horizontal-tb;
+            display: inline-block;
+            text-align: center;
+            width: 100%;
+        }
+
+        .box {
+            display:
+                inline-block;
+            margin: auto;
+            text-align: left;
+        }
+    </style>
+    <div class="wp">
+        <div class="wp-inner">
+            <div class="box">123123</div>
+        </div>
+    </div>
+
+    <div class="wp">
+        <div class="box">123123</div>
+    </div>
+    <style>
+        .wp {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+
+
+
+</body>
+
+</html>
